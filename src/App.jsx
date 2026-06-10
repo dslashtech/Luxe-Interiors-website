@@ -148,19 +148,19 @@ function HomePage({ navigate }) {
   return (
     <div>
       {/* Hero */}
-      <div style={{
+      <div className="section-padding" style={{
         background: `linear-gradient(135deg, #1A1A1A 0%, #2D2520 100%)`,
         minHeight: 580, display: "flex", alignItems: "center",
-        padding: "80px 60px", position: "relative", overflow: "hidden",
+        position: "relative", overflow: "hidden",
       }}>
         <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
           <img src="/hero-bg.png" alt="luxury interior"
             style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.8 }} />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, #1A1A1A 35%, rgba(26,26,26,0.85) 55%, transparent 85%)" }} />
+          <div className="hero-overlay" />
         </div>
         <div style={{ position: "relative", maxWidth: 560 }}>
           <p style={{ color: styles.gold, fontSize: 12, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", margin: "0 0 20px" }}>Chennai's Premier Design Studio</p>
-          <h1 style={{ fontSize: 52, fontWeight: 800, color: "#fff", margin: "0 0 24px", lineHeight: 1.1 }}>
+          <h1 className="hero-title" style={{ fontWeight: 800, margin: "0 0 24px", lineHeight: 1.1 }}>
             Luxury Interiors<br /><span style={{ color: styles.gold }}>Crafted For</span><br />Modern Living
           </h1>
           <p style={{ color: "rgba(255,255,255,0.6)", fontSize: 17, margin: "0 0 40px", lineHeight: 1.7 }}>
@@ -176,7 +176,7 @@ function HomePage({ navigate }) {
               padding: "14px 28px", borderRadius: 100, fontSize: 15, fontWeight: 600, cursor: "pointer", fontFamily: "Instrument Sans, sans-serif",
             }}>Get Cost Estimate →</button>
           </div>
-          <div style={{ display: "flex", gap: 40 }}>
+          <div style={{ display: "flex", gap: 40, flexWrap: "wrap" }}>
             {[["500+", "Projects Completed"], ["4.9", "Customer Rating"], ["12 Yrs", "Experience"]].map(([val, label]) => (
               <div key={label}>
                 <p style={{ color: styles.gold, fontSize: 28, fontWeight: 800, margin: "0 0 4px" }}>{val}</p>
@@ -188,9 +188,9 @@ function HomePage({ navigate }) {
       </div>
 
       {/* Featured Projects */}
-      <div style={{ padding: "80px 60px", background: styles.cream }}>
+      <div className="section-padding" style={{ background: styles.cream }}>
         <SectionHeader label="Our Work" title="Featured Projects" subtitle="Handpicked transformations from Chennai's finest homes and offices" />
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, marginBottom: 40 }}>
+        <div className="grid-3" style={{ marginBottom: 40 }}>
           {PROJECTS.slice(0, 6).map(p => <ProjectCard key={p.id} project={p} onClick={() => navigate("portfolio")} />)}
         </div>
         <div style={{ textAlign: "center" }}>
@@ -202,9 +202,9 @@ function HomePage({ navigate }) {
       </div>
 
       {/* Services */}
-      <div style={{ padding: "80px 60px", background: "#fff" }}>
+      <div className="section-padding" style={{ background: "#fff" }}>
         <SectionHeader label="Services" title="What We Design" subtitle="End-to-end interior solutions for every space in your home" />
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+        <div className="grid-3">
           {SERVICES.map(s => (
             <div key={s.name} style={{
               padding: "28px 24px", background: styles.cream, borderRadius: 16, border: `1px solid ${styles.border}`,
@@ -222,9 +222,9 @@ function HomePage({ navigate }) {
       </div>
 
       {/* Testimonials */}
-      <div style={{ padding: "80px 60px", background: styles.charcoal }}>
+      <div className="section-padding" style={{ background: styles.charcoal }}>
         <SectionHeader label="Reviews" title={<span style={{ color: "#fff" }}>What Clients Say</span>} subtitle={<span style={{ color: "#aaa" }}>500+ happy families across Chennai</span>} />
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+        <div className="grid-3">
           {TESTIMONIALS.slice(0, 3).map((t, i) => (
             <div key={i} style={{ background: styles.darkCard, padding: "28px 24px", borderRadius: 16, border: `1px solid rgba(255,255,255,0.08)` }}>
               <StarRating rating={t.rating} />
@@ -242,31 +242,29 @@ function HomePage({ navigate }) {
       </div>
 
       {/* Service Areas Map */}
-      <div style={{ padding: "80px 60px", background: styles.cream }}>
+      <div className="section-padding" style={{ background: styles.cream }}>
         <SectionHeader label="Coverage" title="We Serve All of Chennai" subtitle="Our design teams are active across major residential and commercial hubs" />
-        <div style={{ background: "#fff", borderRadius: 24, padding: 40, border: `1px solid ${styles.border}` }}>
-          <div style={{ position: "relative", height: 380 }}>
-            <svg viewBox="0 0 500 380" style={{ width: "100%", height: "100%" }}>
-              <rect width="500" height="380" fill="#f0ece6" rx="12" />
-              {/* Chennai simplified map background */}
-              <path d="M 80 30 Q 200 20 350 60 Q 420 90 440 180 Q 450 260 400 320 Q 360 360 300 370 Q 200 375 150 340 Q 80 300 60 220 Q 40 150 80 30 Z" fill="#e8e0d5" stroke="#d4c8b8" strokeWidth="1.5" />
-              <text x="250" y="20" textAnchor="middle" fill="#aaa" fontSize="11" fontWeight="500">Bay of Bengal →</text>
+        <div className="map-card" style={{ border: `1px solid ${styles.border}` }}>
+          <div className="map-section-wrapper">
+            <div className="map-svg-container">
+              <svg viewBox="0 0 500 380" style={{ width: "100%", height: "100%", display: "block" }}>
+                <rect width="500" height="380" fill="#f0ece6" rx="12" />
+                {/* Chennai simplified map background */}
+                <path d="M 80 30 Q 200 20 350 60 Q 420 90 440 180 Q 450 260 400 320 Q 360 360 300 370 Q 200 375 150 340 Q 80 300 60 220 Q 40 150 80 30 Z" fill="#e8e0d5" stroke="#d4c8b8" strokeWidth="1.5" />
+                <text x="250" y="20" textAnchor="middle" fill="#aaa" fontSize="11" fontWeight="500">Bay of Bengal →</text>
 
-              {areas.map((a, i) => (
-                <g key={a.name} onClick={() => setActiveArea(activeArea?.name === a.name ? null : a)} style={{ cursor: "pointer" }}>
-                  <circle cx={a.x} cy={a.y} r={activeArea?.name === a.name ? 20 : 14} fill={activeArea?.name === a.name ? styles.gold : "#fff"} stroke={styles.gold} strokeWidth="2" style={{ transition: "all 0.2s" }} />
-                  <text x={a.x} y={a.y + 4} textAnchor="middle" fill={activeArea?.name === a.name ? "#fff" : styles.gold} fontSize="8" fontWeight="700">●</text>
-                  <text x={a.x} y={a.y + 30} textAnchor="middle" fill={styles.charcoal} fontSize="11" fontWeight="600">{a.name}</text>
-                </g>
-              ))}
-            </svg>
+                {areas.map((a, i) => (
+                  <g key={a.name} onClick={() => setActiveArea(activeArea?.name === a.name ? null : a)} style={{ cursor: "pointer" }}>
+                    <circle cx={a.x} cy={a.y} r={activeArea?.name === a.name ? 20 : 14} fill={activeArea?.name === a.name ? styles.gold : "#fff"} stroke={styles.gold} strokeWidth="2" style={{ transition: "all 0.2s" }} />
+                    <text x={a.x} y={a.y + 4} textAnchor="middle" fill={activeArea?.name === a.name ? "#fff" : styles.gold} fontSize="8" fontWeight="700">●</text>
+                    <text x={a.x} y={a.y + 30} textAnchor="middle" fill={styles.charcoal} fontSize="11" fontWeight="600">{a.name}</text>
+                  </g>
+                ))}
+              </svg>
+            </div>
             {activeArea && (
-              <div style={{
-                position: "absolute", top: 20, right: 20, background: "#fff",
-                padding: "20px 24px", borderRadius: 12, border: `1px solid ${styles.borderGold}`,
-                boxShadow: "0 8px 32px rgba(0,0,0,0.12)", minWidth: 160,
-              }}>
-                <p style={{ fontWeight: 700, fontSize: 16, margin: "0 0 4px" }}>{activeArea.name}</p>
+              <div className="map-detail-card">
+                <p style={{ fontWeight: 700, fontSize: 16, margin: "0 0 4px", color: styles.charcoal }}>{activeArea.name}</p>
                 <p style={{ color: styles.gold, fontSize: 24, fontWeight: 800, margin: "0 0 4px" }}>{activeArea.projects}</p>
                 <p style={{ color: "#888", fontSize: 12, margin: 0 }}>Projects completed</p>
               </div>
@@ -276,7 +274,7 @@ function HomePage({ navigate }) {
       </div>
 
       {/* CTA */}
-      <div style={{ padding: "80px 60px", background: styles.gold, textAlign: "center" }}>
+      <div className="section-padding" style={{ background: styles.gold, textAlign: "center" }}>
         <h2 style={{ color: "#fff", fontSize: 40, fontWeight: 800, margin: "0 0 16px" }}>Ready to Transform Your Space?</h2>
         <p style={{ color: "rgba(255,255,255,0.8)", fontSize: 17, margin: "0 0 32px" }}>Get a free consultation and design concept within 48 hours</p>
         <button onClick={() => navigate("booking")} style={{
@@ -299,13 +297,13 @@ function PortfolioPage({ navigate }) {
 
   if (selectedProject) {
     return (
-      <div style={{ padding: "40px 60px" }}>
+      <div className="page-padding">
         <button onClick={() => setSelectedProject(null)} style={{
           background: "none", border: "none", cursor: "pointer", fontSize: 14, color: "#888",
           marginBottom: 24, padding: 0, fontFamily: "Instrument Sans, sans-serif", display: "flex", alignItems: "center", gap: 6,
         }}>← Back to Portfolio</button>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 380px", gap: 40 }}>
+        <div className="portfolio-details-grid">
           <div>
             <img src={selectedProject.img} alt={selectedProject.name} style={{ width: "100%", height: 400, objectFit: "cover", borderRadius: 16, marginBottom: 24 }} />
 
@@ -332,12 +330,12 @@ function PortfolioPage({ navigate }) {
             {/* Design Process */}
             <div>
               <h3 style={{ fontSize: 16, fontWeight: 700, margin: "0 0 16px" }}>Design Process</h3>
-              <div style={{ display: "flex", gap: 0 }}>
+              <div style={{ display: "flex", gap: 0, flexWrap: "wrap", justifyContent: "center" }}>
                 {["Consultation", "Concept", "3D Design", "Approval", "Execution", "Handover"].map((step, i) => (
-                  <div key={step} style={{ flex: 1, textAlign: "center" }}>
+                  <div key={step} style={{ flex: "1 1 100px", minWidth: 80, textAlign: "center", marginBottom: 12 }}>
                     <div style={{ width: 32, height: 32, borderRadius: "50%", background: i < 5 ? styles.gold : "#eee", color: i < 5 ? "#fff" : "#aaa", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700, margin: "0 auto 8px" }}>{i + 1}</div>
                     <p style={{ fontSize: 11, color: i < 5 ? styles.charcoal : "#aaa", margin: 0, fontWeight: i < 5 ? 600 : 400 }}>{step}</p>
-                    {i < 5 && <div style={{ height: 2, background: i < 4 ? styles.gold : "#eee", margin: "0 0 0 50%" }} />}
+                    {i < 5 && <div className="step-connector" style={{ background: i < 4 ? styles.gold : "#eee" }} />}
                   </div>
                 ))}
               </div>
@@ -349,7 +347,7 @@ function PortfolioPage({ navigate }) {
             <h1 style={{ fontSize: 28, fontWeight: 800, margin: "12px 0 4px" }}>{selectedProject.name}</h1>
             <p style={{ color: "#888", margin: "0 0 24px" }}>📍 {selectedProject.location}</p>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 24 }}>
+            <div className="grid-2" style={{ marginBottom: 24 }}>
               {[["Budget", selectedProject.budget, styles.gold], ["Duration", selectedProject.duration, "#333"], ["Area", `${selectedProject.sqft} sq ft`, "#333"], ["Completed", selectedProject.date, "#333"]].map(([label, val, color]) => (
                 <div key={label} style={{ background: styles.cream, padding: "16px", borderRadius: 12 }}>
                   <p style={{ fontSize: 11, color: "#aaa", textTransform: "uppercase", letterSpacing: "0.05em", margin: "0 0 4px" }}>{label}</p>
@@ -390,12 +388,12 @@ function PortfolioPage({ navigate }) {
   }
 
   return (
-    <div style={{ padding: "60px 60px" }}>
+    <div className="section-padding">
       <SectionHeader label="Portfolio" title="500+ Completed Projects" subtitle="Browse our finest work across apartments, villas, and offices" />
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center", marginBottom: 40 }}>
         {filters.map(f => <Tag key={f} active={activeFilter === f} onClick={() => setActiveFilter(f)}>{f}</Tag>)}
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+      <div className="grid-3">
         {filtered.map(p => <ProjectCard key={p.id} project={p} onClick={setSelectedProject} />)}
       </div>
     </div>
@@ -429,11 +427,11 @@ function AIDesignerPage() {
   const handleGenerate = () => { setGenerating(true); setTimeout(() => { setGenerating(false); setGenerated(true); setStep(3); }, 2500); };
 
   return (
-    <div style={{ padding: "60px 60px", maxWidth: 900, margin: "0 auto" }}>
+    <div className="page-padding" style={{ maxWidth: 900, margin: "0 auto" }}>
       <SectionHeader label="AI-Powered" title="Room Designer" subtitle="Upload your room photo and get instant AI-generated design concepts" />
 
       {/* Steps */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 48, gap: 0 }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 48, gap: 0, flexWrap: "wrap" }}>
         {["Upload Room", "Choose Style", "Generate", "Results"].map((s, i) => (
           <div key={s} style={{ display: "flex", alignItems: "center" }}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
@@ -445,7 +443,7 @@ function AIDesignerPage() {
               }}>{i + 1}</div>
               <span style={{ fontSize: 12, color: step >= i ? styles.charcoal : "#aaa", fontWeight: step === i ? 700 : 400 }}>{s}</span>
             </div>
-            {i < 3 && <div style={{ width: 60, height: 2, background: step > i ? styles.gold : "#eee", margin: "0 8px 20px" }} />}
+            {i < 3 && <div className="progress-step-connector" style={{ background: step > i ? styles.gold : "#eee" }} />}
           </div>
         ))}
       </div>
@@ -480,7 +478,7 @@ function AIDesignerPage() {
       {step === 1 && (
         <div>
           <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: "center", marginBottom: 24 }}>Choose Your Design Style</h3>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16, marginBottom: 32 }}>
+          <div className="grid-2" style={{ marginBottom: 32 }}>
             {styles_list.map(s => (
               <div key={s.name} onClick={() => setSelectedStyle(s.name)} style={{
                 borderRadius: 16, overflow: "hidden", cursor: "pointer",
@@ -536,14 +534,14 @@ function AIDesignerPage() {
       {/* Step 3: Results */}
       {step === 3 && (
         <div>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24, flexWrap: "wrap", gap: 12 }}>
             <h3 style={{ fontSize: 20, fontWeight: 700, margin: 0 }}>4 Design Concepts Generated · {selectedStyle} Style</h3>
             <button onClick={() => { setStep(0); setUploaded(false); setSelectedStyle(null); setGenerated(false); }} style={{
               background: styles.cream, border: "none", padding: "8px 16px", borderRadius: 100,
               fontSize: 13, cursor: "pointer", fontFamily: "Instrument Sans, sans-serif",
             }}>Try Another Room</button>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16, marginBottom: 24 }}>
+          <div className="grid-2" style={{ marginBottom: 24 }}>
             {results.map((r, i) => (
               <div key={i} style={{ position: "relative", borderRadius: 16, overflow: "hidden", cursor: "pointer" }}
                 onMouseEnter={e => e.currentTarget.querySelector(".overlay").style.opacity = "1"}
@@ -597,7 +595,7 @@ function EstimatorPage() {
   };
 
   return (
-    <div style={{ padding: "60px 60px", maxWidth: 800, margin: "0 auto" }}>
+    <div className="page-padding" style={{ maxWidth: 800, margin: "0 auto" }}>
       <SectionHeader label="Smart Pricing" title="AI Cost Estimator" subtitle="Get an instant, accurate cost estimate for your interior project" />
 
       {/* Progress */}
@@ -610,7 +608,7 @@ function EstimatorPage() {
       {step === 0 && (
         <div>
           <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: "center", marginBottom: 24 }}>What type of property?</h3>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 32 }}>
+          <div className="grid-3" style={{ marginBottom: 32 }}>
             {types.map(t => (
               <div key={t.name} onClick={() => setPropertyType(t.name)} style={{
                 padding: "32px 24px", textAlign: "center", borderRadius: 16, border: `2px solid ${propertyType === t.name ? styles.gold : styles.border}`,
@@ -634,7 +632,7 @@ function EstimatorPage() {
       {step === 1 && (
         <div>
           <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: "center", marginBottom: 24 }}>Property size?</h3>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: 32 }}>
+          <div className="grid-3" style={{ marginBottom: 32 }}>
             {sizes.map(s => (
               <div key={s} onClick={() => setSize(s)} style={{
                 padding: "20px", textAlign: "center", borderRadius: 12, border: `2px solid ${size === s ? styles.gold : styles.border}`,
@@ -654,7 +652,7 @@ function EstimatorPage() {
         <div>
           <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: "center", marginBottom: 8 }}>What's your quality preference?</h3>
           <p style={{ color: "#888", textAlign: "center", marginBottom: 24 }}>This determines material grade and brand selection</p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12, marginBottom: 32 }}>
+          <div className="grid-2" style={{ marginBottom: 32 }}>
             {["Economy", "Standard", "Premium", "Luxury"].map(q => (
               <div key={q} onClick={() => setQuality(q)} style={{
                 padding: "20px 24px", borderRadius: 12, border: `2px solid ${quality === q ? styles.gold : styles.border}`,
@@ -680,7 +678,7 @@ function EstimatorPage() {
             <p style={{ color: "#888", fontSize: 14 }}>{propertyType} · {size} · {quality} preference</p>
             <h3 style={{ fontSize: 24, fontWeight: 800, margin: "4px 0" }}>Your Cost Estimates</h3>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16, marginBottom: 32 }}>
+          <div className="grid-2" style={{ marginBottom: 32 }}>
             {getEstimates().map((e, i) => (
               <div key={e.tier} style={{
                 padding: "24px", borderRadius: 16,
@@ -695,7 +693,7 @@ function EstimatorPage() {
               </div>
             ))}
           </div>
-          <div style={{ textAlign: "center", display: "flex", gap: 12, justifyContent: "center" }}>
+          <div style={{ textAlign: "center", display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <button onClick={() => { setStep(0); setPropertyType(null); setSize(null); setQuality(null); }} style={{ background: "#f5f5f5", color: "#333", border: "none", padding: "12px 24px", borderRadius: 100, fontSize: 14, cursor: "pointer", fontFamily: "Instrument Sans, sans-serif" }}>Start Over</button>
             <button style={{ background: styles.gold, color: "#fff", border: "none", padding: "14px 32px", borderRadius: 100, fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "Instrument Sans, sans-serif" }}>Book Free Consultation →</button>
           </div>
@@ -722,7 +720,7 @@ function BookingPage() {
 
   if (booked) {
     return (
-      <div style={{ padding: "80px 60px", textAlign: "center", maxWidth: 600, margin: "0 auto" }}>
+      <div className="section-padding" style={{ textAlign: "center", maxWidth: 600, margin: "0 auto" }}>
         <div style={{ fontSize: 80, marginBottom: 24 }}>🎉</div>
         <h2 style={{ fontSize: 32, fontWeight: 800, margin: "0 0 12px" }}>Consultation Booked!</h2>
         <p style={{ color: "#777", fontSize: 16, margin: "0 0 32px", lineHeight: 1.7 }}>
@@ -746,7 +744,7 @@ function BookingPage() {
   }
 
   return (
-    <div style={{ padding: "60px 60px", maxWidth: 700, margin: "0 auto" }}>
+    <div className="page-padding" style={{ maxWidth: 700, margin: "0 auto" }}>
       <SectionHeader label="Free Consultation" title="Book Your Design Session" subtitle="Speak with our expert designer. 100% free, no obligations." />
 
       <div style={{ display: "flex", gap: 8, marginBottom: 40 }}>
@@ -758,7 +756,7 @@ function BookingPage() {
       {step === 0 && (
         <div>
           <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 16 }}>What service are you interested in?</h3>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12, marginBottom: 32 }}>
+          <div className="grid-2" style={{ marginBottom: 32 }}>
             {SERVICES.map(s => (
               <div key={s.name} onClick={() => setService(s.name)} style={{
                 padding: "16px 20px", borderRadius: 12, border: `2px solid ${service === s.name ? styles.gold : styles.border}`,
@@ -782,7 +780,7 @@ function BookingPage() {
       {step === 1 && (
         <div>
           <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 16 }}>Select a date</h3>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, marginBottom: 32 }}>
+          <div className="grid-3" style={{ marginBottom: 32 }}>
             {dates.map(d => (
               <div key={d} onClick={() => setDate(d)} style={{
                 padding: "16px", textAlign: "center", borderRadius: 12, border: `2px solid ${date === d ? styles.gold : styles.border}`,
@@ -800,7 +798,7 @@ function BookingPage() {
       {step === 2 && (
         <div>
           <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 16 }}>Choose a time slot</h3>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10, marginBottom: 32 }}>
+          <div className="grid-4" style={{ marginBottom: 32 }}>
             {times.map(t => (
               <div key={t} onClick={() => setTime(t)} style={{
                 padding: "14px", textAlign: "center", borderRadius: 12, border: `2px solid ${time === t ? styles.gold : styles.border}`,
@@ -869,22 +867,22 @@ function DashboardPage() {
   ];
 
   return (
-    <div style={{ padding: "40px 60px" }}>
+    <div className="page-padding">
       {/* Header */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 32 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 32, flexWrap: "wrap", gap: 16 }}>
         <div>
           <p style={{ color: styles.gold, fontSize: 12, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", margin: "0 0 6px" }}>Welcome back</p>
           <h1 style={{ fontSize: 28, fontWeight: 800, margin: "0 0 4px" }}>Good Morning, Arun Kumar! 👋</h1>
           <p style={{ color: "#888", margin: 0 }}>Living Room Interior · Anna Nagar</p>
         </div>
-        <div style={{ textAlign: "right" }}>
+        <div style={{ textAlign: "left" }}>
           <Badge color={styles.sage}>Installation Phase</Badge>
           <p style={{ color: "#888", fontSize: 13, margin: "8px 0 0" }}>Est. Completion: Jun 24, 2024</p>
         </div>
       </div>
 
       {/* Stats */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginBottom: 32 }}>
+      <div className="grid-4" style={{ marginBottom: 32 }}>
         {[["75%", "Project Progress", styles.gold], ["₹18L", "Project Value", "#3A7BD5"], ["8 Days", "Est. Remaining", styles.sage], ["⭐ 5.0", "Design Rating", "#E8A838"]].map(([v, l, c]) => (
           <div key={l} style={{ background: "#fff", border: `1px solid ${styles.border}`, borderRadius: 16, padding: "20px 24px" }}>
             <p style={{ fontSize: 26, fontWeight: 800, color: c, margin: "0 0 4px" }}>{v}</p>
@@ -903,7 +901,7 @@ function DashboardPage() {
       </div>
 
       {/* Tabs */}
-      <div style={{ display: "flex", gap: 4, marginBottom: 24, background: "#f5f5f5", padding: 4, borderRadius: 12, width: "fit-content" }}>
+      <div style={{ display: "flex", gap: 4, marginBottom: 24, background: "#f5f5f5", padding: 4, borderRadius: 12, width: "fit-content", flexWrap: "wrap" }}>
         {[["tracker", "Project Tracker"], ["docs", "Documents"], ["messages", "Messages"], ["meetings", "Meetings"]].map(([id, label]) => (
           <button key={id} onClick={() => setActiveTab(id)} style={{
             padding: "8px 18px", borderRadius: 8, border: "none",
@@ -918,11 +916,11 @@ function DashboardPage() {
       </div>
 
       {activeTab === "tracker" && (
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+        <div className="grid-2">
           <Card style={{ padding: 24 }}>
             <h3 style={{ fontSize: 16, fontWeight: 700, margin: "0 0 20px" }}>Project Stages</h3>
             {stages.map((s, i) => (
-              <div key={s.label} style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: i < stages.length - 1 ? 0 : 0 }}>
+              <div key={s.label} style={{ display: "flex", alignItems: "center", gap: 16 }}>
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                   <div style={{
                     width: 32, height: 32, borderRadius: "50%",
@@ -972,9 +970,9 @@ function DashboardPage() {
         <Card style={{ padding: 24 }}>
           <h3 style={{ fontSize: 16, fontWeight: 700, margin: "0 0 20px" }}>Your Documents</h3>
           {[["Quotation.pdf", "₹18,40,000", "28 May 2024", "📄"], ["Invoice_1.pdf", "₹9,20,000", "1 Jun 2024", "🧾"], ["Design_Concept.pdf", "3D Renders + Moodboard", "20 May 2024", "🎨"], ["Material_List.pdf", "62 items selected", "22 May 2024", "📋"]].map(([name, info, date, icon]) => (
-            <div key={name} style={{ display: "flex", alignItems: "center", gap: 16, padding: "14px 0", borderBottom: `1px solid ${styles.border}` }}>
+            <div key={name} style={{ display: "flex", alignItems: "center", gap: 16, padding: "14px 0", borderBottom: `1px solid ${styles.border}`, flexWrap: "wrap" }}>
               <span style={{ fontSize: 28 }}>{icon}</span>
-              <div style={{ flex: 1 }}>
+              <div style={{ flex: 1, minWidth: 200 }}>
                 <p style={{ fontWeight: 600, fontSize: 14, margin: "0 0 2px" }}>{name}</p>
                 <p style={{ fontSize: 12, color: "#888", margin: 0 }}>{info} · {date}</p>
               </div>
@@ -993,7 +991,7 @@ function DashboardPage() {
             {messages.map((m, i) => (
               <div key={i} style={{ display: "flex", justifyContent: m.from === "user" ? "flex-end" : "flex-start" }}>
                 <div style={{
-                  maxWidth: "70%", padding: "10px 14px", borderRadius: m.from === "user" ? "16px 16px 4px 16px" : "16px 16px 16px 4px",
+                  maxWidth: "85%", padding: "10px 14px", borderRadius: m.from === "user" ? "16px 16px 4px 16px" : "16px 16px 16px 4px",
                   background: m.from === "user" ? styles.gold : styles.cream,
                   color: m.from === "user" ? "#fff" : styles.charcoal,
                 }}>
@@ -1012,7 +1010,7 @@ function DashboardPage() {
       )}
 
       {activeTab === "meetings" && (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
+        <div className="grid-2">
           {[
             { date: "Thu, 13 Jun", time: "3:00 PM", type: "Site Visit", designer: "Sudha Priya", mode: "In-Person" },
             { date: "Mon, 17 Jun", time: "11:00 AM", type: "Final Review", designer: "Sudha Priya", mode: "Video Call" },
@@ -1024,9 +1022,9 @@ function DashboardPage() {
               </div>
               <h3 style={{ fontSize: 18, fontWeight: 700, margin: "0 0 4px" }}>{m.type}</h3>
               <p style={{ color: "#888", fontSize: 14, margin: "0 0 16px" }}>With {m.designer} · {m.time}</p>
-              <div style={{ display: "flex", gap: 8 }}>
-                <button style={{ flex: 1, padding: "10px", borderRadius: 10, border: `1px solid ${styles.border}`, background: "transparent", fontSize: 13, cursor: "pointer", fontFamily: "Instrument Sans, sans-serif" }}>Reschedule</button>
-                <button style={{ flex: 1, padding: "10px", borderRadius: 10, border: "none", background: styles.charcoal, color: "#fff", fontSize: 13, cursor: "pointer", fontFamily: "Instrument Sans, sans-serif" }}>Add to Calendar</button>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                <button style={{ flex: 1, minWidth: 100, padding: "10px", borderRadius: 10, border: `1px solid ${styles.border}`, background: "transparent", fontSize: 13, cursor: "pointer", fontFamily: "Instrument Sans, sans-serif" }}>Reschedule</button>
+                <button style={{ flex: 1, minWidth: 100, padding: "10px", borderRadius: 10, border: "none", background: styles.charcoal, color: "#fff", fontSize: 13, cursor: "pointer", fontFamily: "Instrument Sans, sans-serif" }}>Add to Calendar</button>
               </div>
             </Card>
           ))}
@@ -1065,10 +1063,10 @@ function PackageBuilderPage() {
   ];
 
   return (
-    <div style={{ padding: "60px 60px" }}>
+    <div className="section-padding">
       <SectionHeader label="Customise" title="Build Your Package" subtitle="Mix and match quality tiers for each room. See live pricing instantly." />
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 300px", gap: 32 }}>
+      <div className="package-builder-grid">
         <div>
           {rooms.map(room => (
             <div key={room.key} style={{ background: "#fff", border: `1px solid ${styles.border}`, borderRadius: 16, padding: "24px", marginBottom: 16 }}>
@@ -1079,7 +1077,7 @@ function PackageBuilderPage() {
                   <p style={{ fontSize: 13, color: "#888", margin: 0 }}>{room.desc}</p>
                 </div>
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
+              <div className="grid-3">
                 {Object.entries(pricing[room.key]).map(([tier, price]) => (
                   <div key={tier} onClick={() => setSelections(s => ({ ...s, [room.key]: s[room.key] === tier ? null : tier }))} style={{
                     padding: "16px 12px", textAlign: "center", borderRadius: 12,
@@ -1100,7 +1098,7 @@ function PackageBuilderPage() {
         </div>
 
         {/* Summary */}
-        <div style={{ position: "sticky", top: 80 }}>
+        <div className="sticky-sidebar">
           <div style={{ background: styles.charcoal, borderRadius: 20, padding: 28, color: "#fff" }}>
             <p style={{ color: styles.gold, fontSize: 12, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", margin: "0 0 16px" }}>Your Package</p>
             <div style={{ marginBottom: 24 }}>
@@ -1134,7 +1132,7 @@ function PackageBuilderPage() {
             }}>Get Detailed Quote →</button>
           </div>
 
-          <div style={{ background: styles.cream, borderRadius: 16, padding: 20, marginTop: 16 }}>
+          <div style={{ background: styles.cream, borderRadius: 16, padding: 20, marginTop: 16, border: `1px solid ${styles.border}` }}>
             <p style={{ fontWeight: 700, fontSize: 14, margin: "0 0 8px" }}>💡 Smart Savings</p>
             <p style={{ fontSize: 13, color: "#777", margin: 0, lineHeight: 1.6 }}>
               Bundle 3 or more rooms and save up to 12% on total package cost.
@@ -1153,12 +1151,12 @@ function MaterialsPage() {
   const filtered = activeCategory === "All" ? MATERIALS : MATERIALS.filter(m => m.category === activeCategory);
 
   return (
-    <div style={{ padding: "60px 60px" }}>
+    <div className="section-padding">
       <SectionHeader label="Materials" title="Experience Centre" subtitle="Touch, feel, and understand every material before it goes into your home" />
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center", marginBottom: 40 }}>
         {categories.map(c => <Tag key={c} active={activeCategory === c} onClick={() => setActiveCategory(c)}>{c}</Tag>)}
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+      <div className="grid-3">
         {filtered.map(m => (
           <Card key={m.name}>
             <div style={{ height: 140, background: m.color, position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -1209,14 +1207,14 @@ function AdminPage() {
   const maxBar = Math.max(...barData.map(d => d.val));
 
   return (
-    <div style={{ padding: "40px 60px" }}>
+    <div className="page-padding">
       <div style={{ marginBottom: 32 }}>
         <p style={{ color: styles.gold, fontSize: 12, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", margin: "0 0 6px" }}>Admin</p>
         <h1 style={{ fontSize: 28, fontWeight: 800, margin: 0 }}>Business Dashboard</h1>
       </div>
 
       {/* Metrics */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginBottom: 32 }}>
+      <div className="grid-4" style={{ marginBottom: 32 }}>
         {[["128", "New Leads", styles.gold, "+14% this month"], ["42", "Active Projects", "#3A7BD5", "Across Chennai"], ["₹1.8 Cr", "Revenue", styles.sage, "June 2024"], ["56", "Consultations", "#E8A838", "This week"]].map(([v, l, c, sub]) => (
           <div key={l} style={{ background: "#fff", border: `1px solid ${styles.border}`, borderRadius: 16, padding: "24px" }}>
             <p style={{ fontSize: 30, fontWeight: 800, color: c, margin: "0 0 4px" }}>{v}</p>
@@ -1226,7 +1224,7 @@ function AdminPage() {
         ))}
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, marginBottom: 24 }}>
+      <div className="grid-2" style={{ marginBottom: 24 }}>
         {/* Revenue Chart */}
         <Card style={{ padding: 24 }}>
           <h3 style={{ fontSize: 16, fontWeight: 700, margin: "0 0 20px" }}>Revenue Trend (₹ Lakhs)</h3>
@@ -1257,40 +1255,42 @@ function AdminPage() {
 
       {/* Leads Table */}
       <Card style={{ padding: 0 }}>
-        <div style={{ padding: "20px 24px", borderBottom: `1px solid ${styles.border}`, display: "flex", justifyContent: "space-between" }}>
+        <div style={{ padding: "20px 24px", borderBottom: `1px solid ${styles.border}`, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
           <h3 style={{ fontSize: 16, fontWeight: 700, margin: 0 }}>Recent Leads</h3>
           <button style={{ background: styles.gold, color: "#fff", border: "none", padding: "8px 16px", borderRadius: 100, fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "Instrument Sans, sans-serif" }}>+ Add Lead</button>
         </div>
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
-          <thead>
-            <tr style={{ background: styles.cream }}>
-              {["Client", "Area", "Service", "Value", "Stage", "Time"].map(h => (
-                <th key={h} style={{ padding: "12px 20px", textAlign: "left", fontSize: 12, color: "#888", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", border: "none" }}>{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {leads.map((l, i) => (
-              <tr key={i} style={{ borderBottom: `1px solid ${styles.border}` }}
-                onMouseEnter={e => e.currentTarget.style.background = styles.cream}
-                onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
-                <td style={{ padding: "14px 20px" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <div style={{ width: 32, height: 32, borderRadius: "50%", background: styles.gold + "30", display: "flex", alignItems: "center", justifyContent: "center", color: styles.gold, fontWeight: 700, fontSize: 12 }}>{l.name.split(" ").map(w => w[0]).join("")}</div>
-                    <span style={{ fontWeight: 600, fontSize: 14 }}>{l.name}</span>
-                  </div>
-                </td>
-                <td style={{ padding: "14px 20px", fontSize: 13, color: "#666" }}>{l.area}</td>
-                <td style={{ padding: "14px 20px", fontSize: 13, color: "#666" }}>{l.service}</td>
-                <td style={{ padding: "14px 20px", fontSize: 14, fontWeight: 700, color: styles.charcoal }}>{l.value}</td>
-                <td style={{ padding: "14px 20px" }}>
-                  <span style={{ background: stageColors[l.stage] + "20", color: stageColors[l.stage], fontSize: 12, fontWeight: 700, padding: "4px 10px", borderRadius: 100 }}>{l.stage}</span>
-                </td>
-                <td style={{ padding: "14px 20px", fontSize: 12, color: "#aaa" }}>{l.time}</td>
+        <div className="table-responsive-container">
+          <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 600 }}>
+            <thead>
+              <tr style={{ background: styles.cream }}>
+                {["Client", "Area", "Service", "Value", "Stage", "Time"].map(h => (
+                  <th key={h} style={{ padding: "12px 20px", textAlign: "left", fontSize: 12, color: "#888", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", border: "none" }}>{h}</th>
+                ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {leads.map((l, i) => (
+                <tr key={i} style={{ borderBottom: `1px solid ${styles.border}` }}
+                  onMouseEnter={e => e.currentTarget.style.background = styles.cream}
+                  onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
+                  <td style={{ padding: "14px 20px" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                      <div style={{ width: 32, height: 32, borderRadius: "50%", background: styles.gold + "30", display: "flex", alignItems: "center", justifyContent: "center", color: styles.gold, fontWeight: 700, fontSize: 12 }}>{l.name.split(" ").map(w => w[0]).join("")}</div>
+                      <span style={{ fontWeight: 600, fontSize: 14 }}>{l.name}</span>
+                    </div>
+                  </td>
+                  <td style={{ padding: "14px 20px", fontSize: 13, color: "#666" }}>{l.area}</td>
+                  <td style={{ padding: "14px 20px", fontSize: 13, color: "#666" }}>{l.service}</td>
+                  <td style={{ padding: "14px 20px", fontSize: 14, fontWeight: 700, color: styles.charcoal }}>{l.value}</td>
+                  <td style={{ padding: "14px 20px" }}>
+                    <span style={{ background: stageColors[l.stage] + "20", color: stageColors[l.stage], fontSize: 12, fontWeight: 700, padding: "4px 10px", borderRadius: 100 }}>{l.stage}</span>
+                  </td>
+                  <td style={{ padding: "14px 20px", fontSize: 12, color: "#aaa" }}>{l.time}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </Card>
     </div>
   );
@@ -1299,6 +1299,7 @@ function AdminPage() {
 // ─── MAIN APP ─────────────────────────────────────────────────────────────────
 export default function App() {
   const [activePage, setActivePage] = useState("home");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
     { id: "home", label: "Home" },
@@ -1329,17 +1330,18 @@ export default function App() {
       <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
       {/* Nav */}
-      <nav style={{
+      <nav className="nav-padding" style={{
         position: "sticky", top: 0, zIndex: 100, background: "rgba(255,255,255,0.92)",
         backdropFilter: "blur(12px)", borderBottom: `1px solid ${styles.border}`,
-        padding: "0 60px",
       }}>
-        <div style={{ display: "flex", alignItems: "center", height: 64 }}>
-          <div style={{ fontWeight: 800, fontSize: 20, color: styles.charcoal, marginRight: 40, cursor: "pointer", letterSpacing: "-0.03em" }}
-            onClick={() => setActivePage("home")}>
+        <div style={{ display: "flex", alignItems: "center", height: 64, justifyContent: "space-between" }}>
+          <div style={{ fontWeight: 800, fontSize: 20, color: styles.charcoal, cursor: "pointer", letterSpacing: "-0.03em" }}
+            onClick={() => { setActivePage("home"); setMobileMenuOpen(false); }}>
             LUXE INTERIORS
           </div>
-          <div style={{ display: "flex", gap: 2, flex: 1, overflowX: "auto" }}>
+          
+          {/* Desktop Nav Items */}
+          <div className="desktop-nav">
             {navItems.map(item => (
               <button key={item.id} onClick={() => setActivePage(item.id)} style={{
                 padding: "8px 14px", borderRadius: 8, border: "none",
@@ -1352,15 +1354,42 @@ export default function App() {
               }}>{item.label}</button>
             ))}
           </div>
+
+          {/* Mobile Hamburguer Toggle */}
+          <button className="menu-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle menu">
+            {mobileMenuOpen ? "✕" : "☰"}
+          </button>
         </div>
+
+        {/* Mobile Nav Menu Dropdown */}
+        {mobileMenuOpen && (
+          <div style={{
+            position: "absolute", top: 64, left: 0, right: 0,
+            background: "rgba(255,255,255,0.98)", borderBottom: `1px solid ${styles.border}`,
+            padding: "16px 20px", display: "flex", flexDirection: "column", gap: 8,
+            boxShadow: "0 8px 16px rgba(0,0,0,0.06)", zIndex: 99,
+          }}>
+            {navItems.map(item => (
+              <button key={item.id} onClick={() => { setActivePage(item.id); setMobileMenuOpen(false); }} style={{
+                padding: "12px 16px", borderRadius: 8, border: "none",
+                background: activePage === item.id ? styles.gold : "transparent",
+                color: activePage === item.id ? "#fff" : "#666",
+                fontWeight: activePage === item.id ? 700 : 400,
+                fontSize: 14, cursor: "pointer", textAlign: "left",
+                fontFamily: "Instrument Sans, -apple-system, sans-serif",
+                transition: "all 0.2s",
+              }}>{item.label}</button>
+            ))}
+          </div>
+        )}
       </nav>
 
       {/* Page Content */}
       <main>{pages[activePage]}</main>
 
       {/* Footer */}
-      <footer style={{ background: styles.charcoal, padding: "60px 60px 40px", color: "#fff" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 40, marginBottom: 40 }}>
+      <footer className="section-padding" style={{ background: styles.charcoal, color: "#fff", paddingTop: 60, paddingBottom: 40 }}>
+        <div className="footer-grid" style={{ marginBottom: 40 }}>
           <div>
             <div style={{ fontWeight: 800, fontSize: 22, marginBottom: 12, letterSpacing: "-0.03em" }}>
               LUXE INTERIORS
@@ -1377,7 +1406,7 @@ export default function App() {
             </div>
           ))}
         </div>
-        <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 24, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div className="footer-bottom">
           <p style={{ color: "rgba(255,255,255,0.3)", fontSize: 13, margin: 0 }}>© 2024 Luxe Interiors. All rights reserved.</p>
           <p style={{ color: "rgba(255,255,255,0.3)", fontSize: 13, margin: 0 }}>Chennai · Trusted by 500+ Families</p>
         </div>
