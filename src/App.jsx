@@ -1,4 +1,24 @@
 import { useState, useEffect, useRef } from "react";
+import { 
+  Building2,
+  Home,
+  ChefHat, 
+  BedDouble, 
+  Sofa, 
+  DoorClosed, 
+  Sparkles, 
+  Briefcase, 
+  FileText, 
+  Receipt, 
+  Palette, 
+  ClipboardList, 
+  MessageSquare, 
+  Phone, 
+  Lightbulb, 
+  PartyPopper, 
+  Calendar
+} from "lucide-react";
+
 
 // ─── MOCK DATA ───────────────────────────────────────────────────────────────
 const PROJECTS = [
@@ -34,12 +54,12 @@ const MATERIALS = [
 ];
 
 const SERVICES = [
-  { icon: "🍳", name: "Modular Kitchen", desc: "Smart storage meets premium finish", price: "From ₹1.8L" },
-  { icon: "🛏", name: "Bedroom Design", desc: "Your sanctuary, perfectly crafted", price: "From ₹1.2L" },
-  { icon: "🛋", name: "Living Room", desc: "First impressions that last forever", price: "From ₹1.5L" },
-  { icon: "🚪", name: "Wardrobes", desc: "Organized spaces, elegant doors", price: "From ₹85K" },
-  { icon: "✨", name: "False Ceiling", desc: "Layered light, elevated atmosphere", price: "From ₹45K" },
-  { icon: "💼", name: "Office Interior", desc: "Workspaces that inspire productivity", price: "From ₹2.5L" },
+  { icon: <ChefHat size={36} strokeWidth={1.5} />, name: "Modular Kitchen", desc: "Smart storage meets premium finish", price: "From ₹1.8L" },
+  { icon: <BedDouble size={36} strokeWidth={1.5} />, name: "Bedroom Design", desc: "Your sanctuary, perfectly crafted", price: "From ₹1.2L" },
+  { icon: <Sofa size={36} strokeWidth={1.5} />, name: "Living Room", desc: "First impressions that last forever", price: "From ₹1.5L" },
+  { icon: <DoorClosed size={36} strokeWidth={1.5} />, name: "Wardrobes", desc: "Organized spaces, elegant doors", price: "From ₹85K" },
+  { icon: <Sparkles size={36} strokeWidth={1.5} />, name: "False Ceiling", desc: "Layered light, elevated atmosphere", price: "From ₹45K" },
+  { icon: <Briefcase size={36} strokeWidth={1.5} />, name: "Office Interior", desc: "Workspaces that inspire productivity", price: "From ₹2.5L" },
 ];
 
 const CHAT_MESSAGES = [
@@ -47,7 +67,7 @@ const CHAT_MESSAGES = [
   { from: "user", text: "Great! How many more days for completion?", time: "10:32 AM" },
   { from: "team", text: "We estimate 8-10 more working days. The wardrobes are being fitted today.", time: "10:33 AM" },
   { from: "user", text: "Can I visit the site tomorrow around 4 PM?", time: "10:35 AM" },
-  { from: "team", text: "Absolutely! We'll inform the site supervisor. Looking forward to your visit! 🏡", time: "10:36 AM" },
+  { from: "team", text: "Absolutely! We'll inform the site supervisor. Looking forward to your visit!", time: "10:36 AM" },
 ];
 
 // ─── DESIGN TOKENS ───────────────────────────────────────────────────────────
@@ -241,37 +261,6 @@ function HomePage({ navigate }) {
         </div>
       </div>
 
-      {/* Service Areas Map */}
-      <div className="section-padding" style={{ background: styles.cream }}>
-        <SectionHeader label="Coverage" title="We Serve All of Chennai" subtitle="Our design teams are active across major residential and commercial hubs" />
-        <div className="map-card" style={{ border: `1px solid ${styles.border}` }}>
-          <div className="map-section-wrapper">
-            <div className="map-svg-container">
-              <svg viewBox="0 0 500 380" style={{ width: "100%", height: "100%", display: "block" }}>
-                <rect width="500" height="380" fill="#f0ece6" rx="12" />
-                {/* Chennai simplified map background */}
-                <path d="M 80 30 Q 200 20 350 60 Q 420 90 440 180 Q 450 260 400 320 Q 360 360 300 370 Q 200 375 150 340 Q 80 300 60 220 Q 40 150 80 30 Z" fill="#e8e0d5" stroke="#d4c8b8" strokeWidth="1.5" />
-                <text x="250" y="20" textAnchor="middle" fill="#aaa" fontSize="11" fontWeight="500">Bay of Bengal →</text>
-
-                {areas.map((a, i) => (
-                  <g key={a.name} onClick={() => setActiveArea(activeArea?.name === a.name ? null : a)} style={{ cursor: "pointer" }}>
-                    <circle cx={a.x} cy={a.y} r={activeArea?.name === a.name ? 20 : 14} fill={activeArea?.name === a.name ? styles.gold : "#fff"} stroke={styles.gold} strokeWidth="2" style={{ transition: "all 0.2s" }} />
-                    <text x={a.x} y={a.y + 4} textAnchor="middle" fill={activeArea?.name === a.name ? "#fff" : styles.gold} fontSize="8" fontWeight="700">●</text>
-                    <text x={a.x} y={a.y + 30} textAnchor="middle" fill={styles.charcoal} fontSize="11" fontWeight="600">{a.name}</text>
-                  </g>
-                ))}
-              </svg>
-            </div>
-            {activeArea && (
-              <div className="map-detail-card">
-                <p style={{ fontWeight: 700, fontSize: 16, margin: "0 0 4px", color: styles.charcoal }}>{activeArea.name}</p>
-                <p style={{ color: styles.gold, fontSize: 24, fontWeight: 800, margin: "0 0 4px" }}>{activeArea.projects}</p>
-                <p style={{ color: "#888", fontSize: 12, margin: 0 }}>Projects completed</p>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
 
       {/* CTA */}
       <div className="section-padding" style={{ background: styles.gold, textAlign: "center" }}>
@@ -577,9 +566,9 @@ function EstimatorPage() {
   const [quality, setQuality] = useState(null);
 
   const types = [
-    { name: "Apartment", icon: "🏢", desc: "1BHK to 4BHK flats" },
-    { name: "Villa", icon: "🏡", desc: "Independent houses & villas" },
-    { name: "Office", icon: "💼", desc: "Commercial & co-working spaces" },
+    { name: "Apartment", icon: <Building2 size={48} strokeWidth={1.5} />, desc: "1BHK to 4BHK flats" },
+    { name: "Villa", icon: <Home size={48} strokeWidth={1.5} />, desc: "Independent houses & villas" },
+    { name: "Office", icon: <Briefcase size={48} strokeWidth={1.5} />, desc: "Commercial & co-working spaces" },
   ];
 
   const sizes = ["600 sq ft", "1000 sq ft", "1500 sq ft", "2000 sq ft", "Custom"];
@@ -614,7 +603,7 @@ function EstimatorPage() {
                 padding: "32px 24px", textAlign: "center", borderRadius: 16, border: `2px solid ${propertyType === t.name ? styles.gold : styles.border}`,
                 cursor: "pointer", background: propertyType === t.name ? styles.gold + "15" : "#fff", transition: "all 0.2s",
               }}>
-                <div style={{ fontSize: 48, marginBottom: 12 }}>{t.icon}</div>
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: 48, marginBottom: 12, color: propertyType === t.name ? styles.gold : styles.charcoal }}>{t.icon}</div>
                 <p style={{ fontWeight: 700, fontSize: 16, margin: "0 0 4px" }}>{t.name}</p>
                 <p style={{ fontSize: 13, color: "#888", margin: 0 }}>{t.desc}</p>
               </div>
@@ -721,7 +710,9 @@ function BookingPage() {
   if (booked) {
     return (
       <div className="section-padding" style={{ textAlign: "center", maxWidth: 600, margin: "0 auto" }}>
-        <div style={{ fontSize: 80, marginBottom: 24 }}>🎉</div>
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
+          <PartyPopper size={64} strokeWidth={1.5} color={styles.gold} />
+        </div>
         <h2 style={{ fontSize: 32, fontWeight: 800, margin: "0 0 12px" }}>Consultation Booked!</h2>
         <p style={{ color: "#777", fontSize: 16, margin: "0 0 32px", lineHeight: 1.7 }}>
           Your free consultation has been confirmed. A design expert will call you at your preferred time.
@@ -827,8 +818,9 @@ function BookingPage() {
               </div>
             ))}
             <div style={{ background: styles.cream, borderRadius: 12, padding: "16px 20px" }}>
-              <p style={{ fontSize: 13, color: "#666", margin: 0 }}>
-                📅 <strong>{date}</strong> at <strong>{time}</strong> · {service}
+              <p style={{ fontSize: 13, color: "#666", margin: 0, display: "flex", alignItems: "center", gap: 8 }}>
+                <Calendar size={16} strokeWidth={1.5} color={styles.gold} />
+                <span><strong>{date}</strong> at <strong>{time}</strong> · {service}</span>
               </p>
             </div>
           </div>
@@ -872,7 +864,7 @@ function DashboardPage() {
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 32, flexWrap: "wrap", gap: 16 }}>
         <div>
           <p style={{ color: styles.gold, fontSize: 12, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", margin: "0 0 6px" }}>Welcome back</p>
-          <h1 style={{ fontSize: 28, fontWeight: 800, margin: "0 0 4px" }}>Good Morning, Arun Kumar! 👋</h1>
+          <h1 style={{ fontSize: 28, fontWeight: 800, margin: "0 0 4px" }}>Good Morning, Arun Kumar!</h1>
           <p style={{ color: "#888", margin: 0 }}>Living Room Interior · Anna Nagar</p>
         </div>
         <div style={{ textAlign: "left" }}>
@@ -949,8 +941,21 @@ function DashboardPage() {
                 </div>
               </div>
               <div style={{ display: "flex", gap: 8, marginTop: 16 }}>
-                <button style={{ flex: 1, padding: "10px", borderRadius: 10, border: `1px solid ${styles.border}`, background: "transparent", fontSize: 13, cursor: "pointer", fontFamily: "Instrument Sans, sans-serif" }}>📞 Call</button>
-                <button style={{ flex: 1, padding: "10px", borderRadius: 10, border: `1px solid ${styles.gold}`, background: styles.gold + "15", fontSize: 13, cursor: "pointer", fontFamily: "Instrument Sans, sans-serif", color: styles.gold, fontWeight: 600 }}>💬 WhatsApp</button>
+                <button style={{ 
+                  flex: 1, padding: "10px", borderRadius: 10, border: `1px solid ${styles.border}`, 
+                  background: "transparent", fontSize: 13, cursor: "pointer", fontFamily: "Instrument Sans, sans-serif",
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: 6
+                }}>
+                  <Phone size={14} strokeWidth={1.5} /> Call
+                </button>
+                <button style={{ 
+                  flex: 1, padding: "10px", borderRadius: 10, border: `1px solid ${styles.gold}`, 
+                  background: styles.gold + "15", fontSize: 13, cursor: "pointer", fontFamily: "Instrument Sans, sans-serif", 
+                  color: styles.gold, fontWeight: 600,
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: 6
+                }}>
+                  <MessageSquare size={14} strokeWidth={1.5} /> WhatsApp
+                </button>
               </div>
             </Card>
             <Card style={{ padding: 24 }}>
@@ -969,9 +974,9 @@ function DashboardPage() {
       {activeTab === "docs" && (
         <Card style={{ padding: 24 }}>
           <h3 style={{ fontSize: 16, fontWeight: 700, margin: "0 0 20px" }}>Your Documents</h3>
-          {[["Quotation.pdf", "₹18,40,000", "28 May 2024", "📄"], ["Invoice_1.pdf", "₹9,20,000", "1 Jun 2024", "🧾"], ["Design_Concept.pdf", "3D Renders + Moodboard", "20 May 2024", "🎨"], ["Material_List.pdf", "62 items selected", "22 May 2024", "📋"]].map(([name, info, date, icon]) => (
+          {[["Quotation.pdf", "₹18,40,000", "28 May 2024", <FileText size={24} strokeWidth={1.5} color={styles.gold} />], ["Invoice_1.pdf", "₹9,20,000", "1 Jun 2024", <Receipt size={24} strokeWidth={1.5} color={styles.gold} />], ["Design_Concept.pdf", "3D Renders + Moodboard", "20 May 2024", <Palette size={24} strokeWidth={1.5} color={styles.gold} />], ["Material_List.pdf", "62 items selected", "22 May 2024", <ClipboardList size={24} strokeWidth={1.5} color={styles.gold} />]].map(([name, info, date, icon]) => (
             <div key={name} style={{ display: "flex", alignItems: "center", gap: 16, padding: "14px 0", borderBottom: `1px solid ${styles.border}`, flexWrap: "wrap" }}>
-              <span style={{ fontSize: 28 }}>{icon}</span>
+              <span style={{ display: "flex", alignItems: "center" }}>{icon}</span>
               <div style={{ flex: 1, minWidth: 200 }}>
                 <p style={{ fontWeight: 600, fontSize: 14, margin: "0 0 2px" }}>{name}</p>
                 <p style={{ fontSize: 12, color: "#888", margin: 0 }}>{info} · {date}</p>
@@ -1056,10 +1061,10 @@ function PackageBuilderPage() {
   }, 0);
 
   const rooms = [
-    { key: "kitchen", label: "Modular Kitchen", icon: "🍳", desc: "Custom cabinetry, countertops, chimney" },
-    { key: "wardrobe", label: "Wardrobe", icon: "🚪", desc: "Sliding/hinged doors, interior organization" },
-    { key: "living", label: "Living Room", icon: "🛋", desc: "TV unit, wall panels, false ceiling" },
-    { key: "bedroom", label: "Master Bedroom", icon: "🛏", desc: "Bed design, study area, wardrobes" },
+    { key: "kitchen", label: "Modular Kitchen", icon: <ChefHat size={28} strokeWidth={1.5} />, desc: "Custom cabinetry, countertops, chimney" },
+    { key: "wardrobe", label: "Wardrobe", icon: <DoorClosed size={28} strokeWidth={1.5} />, desc: "Sliding/hinged doors, interior organization" },
+    { key: "living", label: "Living Room", icon: <Sofa size={28} strokeWidth={1.5} />, desc: "TV unit, wall panels, false ceiling" },
+    { key: "bedroom", label: "Master Bedroom", icon: <BedDouble size={28} strokeWidth={1.5} />, desc: "Bed design, study area, wardrobes" },
   ];
 
   return (
@@ -1071,7 +1076,7 @@ function PackageBuilderPage() {
           {rooms.map(room => (
             <div key={room.key} style={{ background: "#fff", border: `1px solid ${styles.border}`, borderRadius: 16, padding: "24px", marginBottom: 16 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-                <span style={{ fontSize: 28 }}>{room.icon}</span>
+                <span style={{ display: "flex", alignItems: "center", color: styles.gold }}>{room.icon}</span>
                 <div>
                   <p style={{ fontWeight: 700, fontSize: 16, margin: "0 0 2px" }}>{room.label}</p>
                   <p style={{ fontSize: 13, color: "#888", margin: 0 }}>{room.desc}</p>
@@ -1133,7 +1138,10 @@ function PackageBuilderPage() {
           </div>
 
           <div style={{ background: styles.cream, borderRadius: 16, padding: 20, marginTop: 16, border: `1px solid ${styles.border}` }}>
-            <p style={{ fontWeight: 700, fontSize: 14, margin: "0 0 8px" }}>💡 Smart Savings</p>
+            <p style={{ fontWeight: 700, fontSize: 14, margin: "0 0 8px", display: "flex", alignItems: "center", gap: 8 }}>
+              <Lightbulb size={16} strokeWidth={1.5} color={styles.gold} />
+              <span>Smart Savings</span>
+            </p>
             <p style={{ fontSize: 13, color: "#777", margin: 0, lineHeight: 1.6 }}>
               Bundle 3 or more rooms and save up to 12% on total package cost.
             </p>
@@ -1335,7 +1343,7 @@ export default function App() {
         backdropFilter: "blur(12px)", borderBottom: `1px solid ${styles.border}`,
       }}>
         <div style={{ display: "flex", alignItems: "center", height: 64, justifyContent: "space-between" }}>
-          <div style={{ fontWeight: 800, fontSize: 20, color: styles.charcoal, cursor: "pointer", letterSpacing: "-0.03em" }}
+          <div style={{ fontWeight: 800, fontSize: 20, color: styles.charcoal, marginRight: 40, cursor: "pointer", letterSpacing: "-0.03em" }}
             onClick={() => { setActivePage("home"); setMobileMenuOpen(false); }}>
             LUXE INTERIORS
           </div>
