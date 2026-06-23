@@ -22,18 +22,18 @@ import {
 
 // ─── MOCK DATA ───────────────────────────────────────────────────────────────
 const PROJECTS = [
-  { id: 1, name: "Living Room Interior", location: "Anna Nagar", budget: "₹18 Lakhs", sqft: 2800, duration: "60 Days", date: "Mar 2024", style: "Luxury", type: "Villa", img: "/hero-bg.png" },
-  { id: 2, name: "Dining Restaurant Interior", location: "OMR", budget: "₹8 Lakhs", sqft: 1200, duration: "45 Days", date: "Jan 2024", style: "Modern", type: "Apartment", img: "/assets/Dining Restaurant Interior (OMR).jpeg" },
-  { id: 3, name: "Modular Kitchen Interior", location: "Velachery", budget: "₹12 Lakhs", sqft: 1800, duration: "55 Days", date: "Feb 2024", style: "Minimalist", type: "Apartment", img: "/assets/Modular Kitchen Interior (Velachery).jpeg" },
-  { id: 4, name: "Bedroom Interior", location: "Coimbatore", budget: "₹25 Lakhs", sqft: 4000, duration: "75 Days", date: "Dec 2023", style: "Modern", type: "Office", img: "/assets/Bedroom Interior (Coimbatore).jpeg" },
-  { id: 5, name: "Antique Interior", location: "Trichy", budget: "₹22 Lakhs", sqft: 3200, duration: "65 Days", date: "Nov 2023", style: "Luxury", type: "Villa", img: "/assets/Antique Interior (Trichy).jpeg" },
-  { id: 6, name: "Pooja Room Interior", location: "Madurai", budget: "₹6 Lakhs", sqft: 900, duration: "35 Days", date: "Oct 2023", style: "Scandinavian", type: "Apartment", img: "/assets/Pooja Room Interior (Madurai).jpeg" },
-  { id: 7, name: "Office Interior", location: "Anna Nagar", budget: "₹35 Lakhs", sqft: 5000, duration: "90 Days", date: "Sep 2023", style: "Luxury", type: "Villa", img: "/assets/Office Interior (Anna Nagar).jpeg" },
-  { id: 8, name: "Balcony Interior", location: "OMR", budget: "₹4.5 Lakhs", sqft: 600, duration: "30 Days", date: "Aug 2023", style: "Minimalist", type: "Apartment", img: "/assets/Balcony Interior (OMR).jpeg" },
-  { id: 9, name: "Bathroom Interior", location: "Coimbatore", budget: "₹40 Lakhs", sqft: 6000, duration: "100 Days", date: "Jul 2023", style: "Modern", type: "Office", img: "/assets/Bathroom Interior (Coimbatore).jpeg" },
-  { id: 10, name: "Cafe Interior", location: "Velachery", budget: "₹14 Lakhs", sqft: 2200, duration: "50 Days", date: "Jun 2023", style: "Luxury", type: "Villa", img: "/assets/Cafe Interior (Velachery).jpeg" },
-  { id: 11, name: "Salon Interior", location: "Madurai", budget: "₹7 Lakhs", sqft: 1100, duration: "40 Days", date: "May 2023", style: "Scandinavian", type: "Apartment", img: "/assets/Salon Interior (Madurai).jpeg" },
-  { id: 12, name: "Office Interior", location: "Trichy", budget: "₹9 Lakhs", sqft: 1400, duration: "48 Days", date: "Apr 2023", style: "Modern", type: "Apartment", img: "/assets/Office Interior (Trichy).jpeg" },
+  { id: 1, name: "Living Room Interior", location: "Anna Nagar", budget: "₹18 Lakhs", sqft: 2800, duration: "60 Days", date: "Mar 2024", style: "Luxury", type: "Villa", img: "hero-bg.png" },
+  { id: 2, name: "Dining Restaurant Interior", location: "OMR", budget: "₹8 Lakhs", sqft: 1200, duration: "45 Days", date: "Jan 2024", style: "Modern", type: "Apartment", img: "assets/Dining Restaurant Interior (OMR).jpeg" },
+  { id: 3, name: "Modular Kitchen Interior", location: "Velachery", budget: "₹12 Lakhs", sqft: 1800, duration: "55 Days", date: "Feb 2024", style: "Minimalist", type: "Apartment", img: "assets/Modular Kitchen Interior (Velachery).jpeg" },
+  { id: 4, name: "Bedroom Interior", location: "Coimbatore", budget: "₹25 Lakhs", sqft: 4000, duration: "75 Days", date: "Dec 2023", style: "Modern", type: "Office", img: "assets/Bedroom Interior (Coimbatore).jpeg" },
+  { id: 5, name: "Antique Interior", location: "Trichy", budget: "₹22 Lakhs", sqft: 3200, duration: "65 Days", date: "Nov 2023", style: "Luxury", type: "Villa", img: "assets/Antique Interior (Trichy).jpeg" },
+  { id: 6, name: "Pooja Room Interior", location: "Madurai", budget: "₹6 Lakhs", sqft: 900, duration: "35 Days", date: "Oct 2023", style: "Scandinavian", type: "Apartment", img: "assets/Pooja Room Interior (Madurai).jpeg" },
+  { id: 7, name: "Office Interior", location: "Anna Nagar", budget: "₹35 Lakhs", sqft: 5000, duration: "90 Days", date: "Sep 2023", style: "Luxury", type: "Villa", img: "assets/Office Interior (Anna Nagar).jpeg" },
+  { id: 8, name: "Balcony Interior", location: "OMR", budget: "₹4.5 Lakhs", sqft: 600, duration: "30 Days", date: "Aug 2023", style: "Minimalist", type: "Apartment", img: "assets/Balcony Interior (OMR).jpeg" },
+  { id: 9, name: "Bathroom Interior", location: "Coimbatore", budget: "₹40 Lakhs", sqft: 6000, duration: "100 Days", date: "Jul 2023", style: "Modern", type: "Office", img: "assets/Bathroom Interior (Coimbatore).jpeg" },
+  { id: 10, name: "Cafe Interior", location: "Velachery", budget: "₹14 Lakhs", sqft: 2200, duration: "50 Days", date: "Jun 2023", style: "Luxury", type: "Villa", img: "assets/Cafe Interior (Velachery).jpeg" },
+  { id: 11, name: "Salon Interior", location: "Madurai", budget: "₹7 Lakhs", sqft: 1100, duration: "40 Days", date: "May 2023", style: "Scandinavian", type: "Apartment", img: "assets/Salon Interior (Madurai).jpeg" },
+  { id: 12, name: "Office Interior", location: "Trichy", budget: "₹9 Lakhs", sqft: 1400, duration: "48 Days", date: "Apr 2023", style: "Modern", type: "Apartment", img: "assets/Office Interior (Trichy).jpeg" },
 ];
 
 const TESTIMONIALS = [
@@ -174,7 +174,7 @@ function HomePage({ navigate }) {
         padding: "80px 60px", position: "relative", overflow: "hidden",
       }}>
         <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
-          <img src="/hero-bg.png" alt="luxury interior"
+          <img src="hero-bg.png" alt="luxury interior"
             style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.8 }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, #1A1A1A 35%, rgba(26,26,26,0.85) 55%, transparent 85%)" }} />
         </div>
@@ -399,7 +399,7 @@ function AIDesignerPage() {
   const [generated, setGenerated] = useState(false);
 
   const styles_list = [
-    { name: "Modern", img: "/hero-bg.png", desc: "Clean lines, bold geometry" },
+    { name: "Modern", img: "hero-bg.png", desc: "Clean lines, bold geometry" },
     { name: "Luxury", img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=300&q=80", desc: "Opulent textures, gold accents" },
     { name: "Scandinavian", img: "https://images.unsplash.com/photo-1615529182904-14819c35db37?w=300&q=80", desc: "Light wood, cozy minimalism" },
     { name: "Minimal", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&q=80", desc: "Less is more, pure form" },
